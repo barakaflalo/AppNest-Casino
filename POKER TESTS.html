@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Poker 3D — Core Tests</title>
+<style>
+body{margin:0;background:#080808;color:#eee;font-family:Arial,sans-serif;padding:24px}main{max-width:760px;margin:auto}
+h1{color:#e5be5b}.summary{padding:18px;border:1px solid #4c4229;border-radius:14px;background:#141311;margin:16px 0;font-size:18px}
+.test{display:flex;justify-content:space-between;gap:15px;padding:12px 14px;border-bottom:1px solid #292722}.ok{color:#55d891}.bad{color:#ff7268}
+button{border:1px solid #e5be5b;background:#171510;color:#e5be5b;padding:12px 18px;border-radius:11px;font-weight:700}iframe{display:none}
+</style></head>
+<body><main><h1>בדיקות ליבה — Poker 3D</h1><p>הבדיקות משתמשות ישירות במנוע של המשחק.</p><button id="run">הרץ שוב</button><div class="summary" id="summary">טוען…</div><div id="list"></div></main>
+<iframe id="game" src="POKER%203D.html"></iframe>
+<script>
+const frame=document.getElementById('game'), summary=document.getElementById('summary'), list=document.getElementById('list');
+function run(){
+  const api=frame.contentWindow.PokerCoreTests;
+  if(!api){summary.textContent='מנוע הבדיקות עדיין לא נטען';return;}
+  const report=api.run();
+  summary.className='summary '+(report.passed===report.total?'ok':'bad');
+  summary.textContent=`Poker 3D ${report.version} · ${report.passed}/${report.total} בדיקות עברו`;
+  list.innerHTML=report.results.map(r=>`<div class="test"><span>${r.name}</span><b class="${r.ok?'ok':'bad'}">${r.ok?'עבר':'נכשל: '+r.error}</b></div>`).join('');
+}
+frame.addEventListener('load',run);document.getElementById('run').onclick=run;
+</script></body></html>

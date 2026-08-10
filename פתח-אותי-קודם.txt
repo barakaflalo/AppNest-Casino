@@ -1,0 +1,21 @@
+AppNest Casino 2.5.0 — הוראות פתיחה
+====================================
+
+1. אין לפתוח את CASINO.html ישירות מתוך קובץ ה-ZIP.
+2. לחצו לחיצה ימנית על קובץ ה-ZIP ובחרו "חלץ הכל".
+3. פתחו את התיקייה שחולצה.
+4. ודאו ש-CASINO.html ו-POKER 3D.html נמצאים יחד באותה תיקייה.
+5. פתחו את CASINO.html.
+
+Poker 3D זקוק לחיבור אינטרנט בעת הטעינה, מפני שמנוע Three.js נטען מהרשת.
+
+English
+=======
+
+1. Do not open CASINO.html directly inside the ZIP file.
+2. Right-click the ZIP and choose "Extract All".
+3. Open the extracted folder.
+4. Keep CASINO.html and POKER 3D.html in the same folder.
+5. Open CASINO.html.
+
+Poker 3D requires an internet connection while loading Three.js.
