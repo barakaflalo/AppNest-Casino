@@ -766,6 +766,13 @@ input:focus{border-color:var(--gold);outline:none}
 }
 .game-help-btn{flex:0 0 40px;width:40px;height:40px;border-radius:50%;border:1px solid var(--gold-dim);background:var(--surface);color:var(--gold);font:900 17px var(--ff-body)}.game-help-btn:active{transform:scale(.94)}.help-box{max-width:560px;text-align:start}.help-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}.help-icon{font-size:34px}.help-box h3{margin:0;font:800 23px var(--ff-disp);color:var(--gold)}.help-list{display:grid;gap:9px;margin:0;padding:0;list-style:none}.help-list li{padding:11px 13px;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--surface) 88%,transparent);line-height:1.55;font-size:13px}.help-list li::before{content:"✓";color:var(--gold);font-weight:900;margin-inline-end:8px}.help-close{width:100%;margin-top:15px;min-height:46px;border:1px solid var(--gold);border-radius:12px;background:transparent;color:var(--gold);font-weight:800}@media(max-width:480px){.game-help-btn{width:36px;height:36px;flex-basis:36px}.help-box{max-height:82dvh;overflow:auto;padding:17px}.help-box h3{font-size:19px}.help-list li{font-size:12px;padding:9px 10px}}
 </style>
+<style id="abx-css">
+.abx-grp{border:1px solid var(--line);border-radius:var(--r,16px);overflow:hidden;margin-top:12px;background:var(--surface)}
+.abx-row{display:flex;align-items:center;gap:12px;width:100%;padding:13px 16px;border:0;border-bottom:1px solid var(--line);background:none;color:var(--txt);font:inherit;text-align:start;cursor:pointer}
+.abx-row:last-child{border-bottom:0}.abx-static{cursor:default}.abx-row:not(.abx-static):active{background:rgba(212,175,55,.08)}
+.abx-ic{font-size:20px;width:26px;text-align:center}.abx-tx{flex:1;display:flex;flex-direction:column}.abx-tx small{color:var(--muted);font-size:12px;margin-top:2px}
+.abx-arr{color:var(--muted);font-size:18px}.abx-note{margin-top:12px;padding:14px 16px;border-radius:var(--r,16px);border:1px solid var(--gold-dim,var(--line));color:var(--muted);font-size:13px;line-height:1.7}
+</style>
 </head>
 <body data-theme="gold" data-mode="dark">
 
@@ -1345,7 +1352,9 @@ input:focus{border-color:var(--gold);outline:none}
       <p style="margin-top:16px">Barak Aflalo</p>
       <p>© AppNest 2026</p>
     </div>
-    <button class="btn" id="b-share"><span id="t-share"></span></button>
+    <div class="abx-grp"><div class="abx-row abx-static"><span class="abx-ic">📦</span><span class="abx-tx"><b data-abx="ver"></b><small id="abx-ver"></small></span></div><div class="abx-row abx-static"><span class="abx-ic">👨‍💻</span><span class="abx-tx"><b data-abx="dev"></b><small>Barak Aflalo</small></span></div><div class="abx-row abx-static"><span class="abx-ic">📱</span><span class="abx-tx"><b data-abx="plat"></b><small>PWA · HTML5</small></span></div><div class="abx-row abx-static"><span class="abx-ic">🔒</span><span class="abx-tx"><b data-abx="store_l"></b><small id="abx-storage"></small></span></div><div class="abx-row abx-static"><span class="abx-ic">©️</span><span class="abx-tx"><b data-abx="lic"></b><small>© AppNest 2026</small></span></div></div>
+    <div class="abx-grp"><button class="abx-row" data-abx-act="shop"><span class="abx-ic">🏪</span><span class="abx-tx"><b data-abx="shop"></b></span><span class="abx-arr">‹</span></button><button class="abx-row" id="b-share"><span class="abx-ic">📤</span><span class="abx-tx"><b id="t-share"></b></span><span class="abx-arr">‹</span></button><button class="abx-row" data-abx-act="mail"><span class="abx-ic">✉️</span><span class="abx-tx"><b data-abx="fb"></b><small>appnest55@gmail.com</small></span><span class="abx-arr">‹</span></button><button class="abx-row" data-abx-act="priv"><span class="abx-ic">🛡️</span><span class="abx-tx"><b data-abx="priv"></b></span><span class="abx-arr">‹</span></button><button class="abx-row" data-abx-act="guide"><span class="abx-ic">📖</span><span class="abx-tx"><b data-abx="guide"></b></span><span class="abx-arr">‹</span></button></div>
+    <div class="abx-note" id="abx-disc"></div>
   </div>
 </section>
 
@@ -4981,6 +4990,30 @@ function initPWA(){
   document.addEventListener("visibilitychange", ()=>{if(document.hidden){if(typeof wofSpinning!=="undefined"&&wofSpinning&&wofPendingSeg>=0)wofResolve(wofPendingSeg);save();}});
   if(!S.seenTutorial) setTimeout(openTutorial, 500);
 })();
+</script>
+<script>
+/* AppNest standard About block (store, share, feedback, privacy, guide, spec rows) */
+const ABX={
+ he:{ver:"גרסה",dev:"פותח",plat:"פלטפורמה",store_l:"אחסון",storage:"על המכשיר בלבד",lic:"רישיון",shop:"חנות AppNest",fb:"שלח משוב",priv:"מדיניות פרטיות",guide:"מדריך שימוש",disc:"לשעשוע בלבד. כל הז׳יטונים וירטואליים — אין כסף אמיתי, אין קניות ואין אפשרות לזכות בכסף. אם הימורים מעסיקים אותך מעבר לרצוי, פנה/י לגורם מקצועי."},
+ en:{ver:"Version",dev:"Developer",plat:"Platform",store_l:"Storage",storage:"On device only",lic:"License",shop:"AppNest store",fb:"Send feedback",priv:"Privacy policy",guide:"How to play",disc:"For fun only. All chips are virtual — no real money, no purchases and nothing to win. If gambling worries you, please reach out to a professional."},
+ ru:{ver:"Версия",dev:"Разработчик",plat:"Платформа",store_l:"Хранение",storage:"Только на устройстве",lic:"Лицензия",shop:"Магазин AppNest",fb:"Отзыв",priv:"Конфиденциальность",guide:"Как играть",disc:"Только для развлечения. Все фишки виртуальные — без реальных денег и покупок."},
+ es:{ver:"Versión",dev:"Desarrollador",plat:"Plataforma",store_l:"Almacenamiento",storage:"Solo en el dispositivo",lic:"Licencia",shop:"Tienda AppNest",fb:"Enviar comentarios",priv:"Privacidad",guide:"Cómo jugar",disc:"Solo por diversión. Todas las fichas son virtuales — sin dinero real ni compras."},
+ ar:{ver:"الإصدار",dev:"المطوّر",plat:"المنصة",store_l:"التخزين",storage:"على الجهاز فقط",lic:"الترخيص",shop:"متجر AppNest",fb:"أرسل ملاحظات",priv:"سياسة الخصوصية",guide:"طريقة اللعب",disc:"للتسلية فقط. جميع الرقائق افتراضية — لا أموال حقيقية ولا مشتريات."}
+};
+function applyAboutX(){try{const L=ABX[S.lang]||ABX.en;
+ document.querySelectorAll('[data-abx]').forEach(e=>{e.textContent=L[e.dataset.abx]||ABX.en[e.dataset.abx]||'';});
+ const v=document.getElementById('abx-ver'); if(v) v.textContent=VERSION;
+ const st=document.getElementById('abx-storage'); if(st) st.textContent=L.storage;
+ const d=document.getElementById('abx-disc'); if(d) d.textContent=L.disc;
+ const sh=document.getElementById('t-share'); if(sh) sh.textContent=(L.shop&&T?T("share"):sh.textContent).replace(/^🔗\s*/,'');
+}catch(e){}}
+(function(){const _al=applyLang; applyLang=function(){const r=_al.apply(this,arguments); applyAboutX(); return r;}; applyAboutX();})();
+document.addEventListener('click',function(ev){const b=ev.target.closest&&ev.target.closest('[data-abx-act]'); if(!b)return; const a=b.dataset.abxAct;
+ if(a==='shop') window.open('https://appnest-store.pages.dev','_blank','noopener');
+ else if(a==='mail') location.href='mailto:appnest55@gmail.com?subject='+encodeURIComponent('AppNest Casino — feedback');
+ else if(a==='priv') window.open('privacy_policy.html','_blank','noopener');
+ else if(a==='guide' && typeof openTutorial==='function') openTutorial();
+});
 </script>
 </body>
 </html>
